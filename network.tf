@@ -21,7 +21,7 @@ resource "aws_subnet" "mwaa_private_subnet" {
   cidr_block = var.private_subnet_cidrs[count.index]
   vpc_id = var.vpc_id
   map_public_ip_on_launch = false
-  availability_zone = count.index % 2 ? "${var.region}a" : "${var.region}b"
+  availability_zone = count.index % 2 == 0 ? "${var.region}a" : "${var.region}b"
   tags = merge({
     Name = "mwaa-${var.environment_name}-private-subnet-${count.index}"
   }, var.tags)
