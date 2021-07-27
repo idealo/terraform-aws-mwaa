@@ -45,7 +45,7 @@ resource "aws_mwaa_environment" "mwaa_environment" {
   network_configuration {
     security_group_ids = [
       aws_security_group.mwaa_no_ingress_sg.id]
-    subnet_ids = aws_subnet.mwaa_private_subnet
+    subnet_ids = aws_subnet.mwaa_private_subnet.id
   }
 
   source_bucket_arn = aws_s3_bucket.mwaa_airflow_bucket.arn
