@@ -1,0 +1,1 @@
+MWAA Alert:<{{ti.dag_id}} {{execution_date.strftime('%Y-%m-%d-%H')}}>{{ti.state}}
