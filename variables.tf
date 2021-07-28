@@ -14,6 +14,7 @@ variable "private_subnet_cidrs" {
   type = list(string)
 }
 
+variable "s3_bucket" {}
 variable "dag_s3_path" {}
 variable "requirements_s3_path" {}
 variable "additional_execution_role_policy_document_json" {}

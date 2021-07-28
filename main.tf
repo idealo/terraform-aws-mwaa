@@ -48,7 +48,7 @@ resource "aws_mwaa_environment" "mwaa_environment" {
     subnet_ids = aws_subnet.mwaa_private_subnet[*].id
   }
 
-  source_bucket_arn = aws_s3_bucket.mwaa_airflow_bucket.arn
+  source_bucket_arn = data.aws_s3_bucket.mwaa_bucket.arn
 
   webserver_access_mode = "PUBLIC_ONLY"
   tags = merge({

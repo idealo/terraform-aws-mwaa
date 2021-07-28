@@ -46,7 +46,7 @@ resource "aws_nat_gateway" "mwaa_nat_gateway" {
 
 resource "aws_route_table" "mwaa_route_table_public" {
   vpc_id = var.vpc_id
-  route  {
+  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = var.internet_gateway_id
   }
@@ -64,7 +64,7 @@ resource "aws_route_table_association" "mwaa_route_table_association_public" {
 resource "aws_route_table" "mwaa_route_table_private" {
   count = length(aws_nat_gateway.mwaa_nat_gateway)
   vpc_id = var.vpc_id
-  route  {
+  route {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.mwaa_nat_gateway[count.index].id
   }
@@ -85,4 +85,18 @@ resource "aws_security_group" "mwaa_no_ingress_sg" {
   tags = merge({
     Name = "mwaa-${var.environment_name}-no-ingress-sg"
   }, var.tags  )
+  ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    self = true
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+  }
 }
