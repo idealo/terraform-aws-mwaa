@@ -32,3 +32,7 @@ terraform.rc
 # Lambda directories
 builds/
 __pycache__/
+
+# Ignore intellij files
+*.iml
+.idea
