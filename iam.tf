@@ -46,8 +46,8 @@ data "aws_iam_policy_document" "mwaa_execution_policy-doc-basic" {
       "s3:List*"
     ]
     resources = [
-      aws_s3_bucket.mwaa_airflow_bucket.arn,
-      "${aws_s3_bucket.mwaa_airflow_bucket.arn}/*",
+      data.aws_s3_bucket.mwaa_bucket.arn,
+      "${data.aws_s3_bucket.mwaa_bucket.arn}/*",
     ]
   }
   statement {
