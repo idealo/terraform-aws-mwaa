@@ -1,10 +1,34 @@
+# general information
 variable "region" {}
 variable "account_id" {}
 variable "environment_name" {}
+variable "airflow_version" {}
 
-variable "sns_subscription_email_address" {}
-variable "alert_hook_url" {}
+# s3 configuration
+variable "s3_bucket" {}
+variable "dag_s3_path" {
+  type = string
+  default = "/dags"
+}
+variable "plugins_s3_path" {
+  default = null
+}
+variable "plugins_s3_object_version" {
+  default = null
+}
+variable "requirements_s3_path" {
+  default = null
+}
+variable "requirements_s3_object_version" {
+  default = null
+}
 
+# airflow.cfg values
+variable "airflow_configuration_options" {
+  type = map(string)
+}
+
+# networking
 variable "vpc_id" {}
 variable "internet_gateway_id" {}
 variable "public_subnet_cidrs" {
@@ -14,10 +38,10 @@ variable "private_subnet_cidrs" {
   type = list(string)
 }
 
-variable "s3_bucket" {}
-variable "dag_s3_path" {}
-variable "requirements_s3_path" {}
-variable "additional_execution_role_policy_document_json" {}
+variable "additional_execution_role_policy_document_json" {
+  type = string
+  default = "{}"
+}
 
 variable "max_workers" {
   default = "10"
@@ -31,7 +55,10 @@ variable "environment_class" {
   default = "mw1.small"
 }
 
-variable "airflow_version" {}
+variable "webserver_access_mode" {
+  type = string
+  default = null
+}
 
 variable "tags" {
   type = map(string)

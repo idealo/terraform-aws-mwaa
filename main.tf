@@ -1,19 +1,19 @@
-resource "aws_mwaa_environment" "mwaa_environment" {
-  airflow_configuration_options = {
-    "email.email_backend" = "custom_sns.send_email"
-    "email.html_content_template" = "/usr/local/airflow/plugins/custom_email_template.txt"
-    "email.subject_template" = "/usr/local/airflow/plugins/custom_subject_template.txt"
-  }
+resource "aws_mwaa_environment" "this" {
+  airflow_configuration_options = var.airflow_configuration_options
 
-  dag_s3_path = var.dag_s3_path
-  execution_role_arn = aws_iam_role.mwaa_execution_role.arn
+  execution_role_arn = aws_iam_role.this.arn
   name = var.environment_name
   max_workers = var.max_workers
   min_workers = var.min_workers
   environment_class = var.environment_class
-  plugins_s3_path = aws_s3_bucket_object.mwaa_plugin.key
-  requirements_s3_path = var.requirements_s3_path
   airflow_version = var.airflow_version
+
+  source_bucket_arn = data.aws_s3_bucket.this.arn
+  dag_s3_path = var.dag_s3_path
+  plugins_s3_path = var.plugins_s3_path
+  plugins_s3_object_version = var.plugins_s3_object_version
+  requirements_s3_path = var.requirements_s3_path
+  requirements_s3_object_version = var.requirements_s3_object_version
 
   logging_configuration {
     dag_processing_logs {
@@ -44,13 +44,13 @@ resource "aws_mwaa_environment" "mwaa_environment" {
 
   network_configuration {
     security_group_ids = [
-      aws_security_group.mwaa_no_ingress_sg.id]
-    subnet_ids = aws_subnet.mwaa_private_subnet[*].id
+      aws_security_group.this.id]
+    subnet_ids = aws_subnet.private[*].id
   }
 
-  source_bucket_arn = data.aws_s3_bucket.mwaa_bucket.arn
 
-  webserver_access_mode = "PUBLIC_ONLY"
+  webserver_access_mode = var.webserver_access_mode
+
   tags = merge({
     Name = "mwaa-${var.environment_name}"
   }, var.tags)

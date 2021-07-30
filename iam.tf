@@ -1,16 +1,16 @@
-resource "aws_iam_role" "mwaa_execution_role" {
+resource "aws_iam_role" "this" {
   name = "mwaa-${var.environment_name}-execution-role"
-  assume_role_policy = data.aws_iam_policy_document.mwaa_assume_role_policy-doc.json
+  assume_role_policy = data.aws_iam_policy_document.assume.json
   tags = var.tags
 }
 
-resource "aws_iam_role_policy" "mwaa_execution_policy" {
+resource "aws_iam_role_policy" "this" {
   name = "mwaa-${var.environment_name}-execution-policy"
-  policy = data.aws_iam_policy_document.mwaa_execution_policy-doc.json
-  role = aws_iam_role.mwaa_execution_role.id
+  policy = data.aws_iam_policy_document.this.json
+  role = aws_iam_role.this.id
 }
 
-data "aws_iam_policy_document" "mwaa_assume_role_policy-doc" {
+data "aws_iam_policy_document" "assume" {
   version = "2012-10-17"
   statement {
     effect = "Allow"
@@ -27,7 +27,7 @@ data "aws_iam_policy_document" "mwaa_assume_role_policy-doc" {
   }
 }
 
-data "aws_iam_policy_document" "mwaa_execution_policy-doc-basic" {
+data "aws_iam_policy_document" "base" {
   version = "2012-10-17"
   statement {
     effect = "Allow"
@@ -46,8 +46,8 @@ data "aws_iam_policy_document" "mwaa_execution_policy-doc-basic" {
       "s3:List*"
     ]
     resources = [
-      data.aws_s3_bucket.mwaa_bucket.arn,
-      "${data.aws_s3_bucket.mwaa_bucket.arn}/*",
+      data.aws_s3_bucket.this.arn,
+      "${data.aws_s3_bucket.this.arn}/*",
     ]
   }
   statement {
@@ -116,20 +116,11 @@ data "aws_iam_policy_document" "mwaa_execution_policy-doc-basic" {
       variable = "kms:ViaService"
     }
   }
-  statement {
-    effect = "Allow"
-    actions = [
-      "SNS:Publish"
-    ]
-    resources = [
-      "arn:aws:sns:${var.region}:*:${var.environment_name}-mwaa-sns-topic"
-    ]
-  }
 }
 
-data "aws_iam_policy_document" "mwaa_execution_policy-doc" {
+data "aws_iam_policy_document" "this" {
   source_policy_documents = [
-    data.aws_iam_policy_document.mwaa_execution_policy-doc-basic.json,
+    data.aws_iam_policy_document.base.json,
     var.additional_execution_role_policy_document_json
   ]
 }

@@ -1,3 +1,3 @@
-output "mwaa_s3_bucket_arn" {
-  value = data.aws_s3_bucket.mwaa_bucket.arn
+output "mwaa_arn" {
+  value = aws_mwaa_environment.this.arn
 }
