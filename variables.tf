@@ -2,7 +2,10 @@
 variable "region" {}
 variable "account_id" {}
 variable "environment_name" {}
-variable "airflow_version" {}
+variable "airflow_version" {
+  type = string
+  default = "2.0.2"
+}
 
 # s3 configuration
 variable "s3_bucket" {}
@@ -26,6 +29,7 @@ variable "requirements_s3_object_version" {
 # airflow.cfg values
 variable "airflow_configuration_options" {
   type = map(string)
+  default = {}
 }
 
 # networking
