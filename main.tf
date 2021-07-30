@@ -8,7 +8,7 @@ resource "aws_mwaa_environment" "this" {
   environment_class = var.environment_class
   airflow_version = var.airflow_version
 
-  source_bucket_arn = data.aws_s3_bucket.this.arn
+  source_bucket_arn = var.source_bucket_arn
   dag_s3_path = var.dag_s3_path
   plugins_s3_path = var.plugins_s3_path
   plugins_s3_object_version = var.plugins_s3_object_version

@@ -8,7 +8,7 @@ variable "airflow_version" {
 }
 
 # s3 configuration
-variable "s3_bucket" {}
+variable "source_bucket_arn" {}
 variable "dag_s3_path" {
   type = string
   default = "/dags"
@@ -66,4 +66,5 @@ variable "webserver_access_mode" {
 
 variable "tags" {
   type = map(string)
+  default = {}
 }
