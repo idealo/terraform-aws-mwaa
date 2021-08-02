@@ -46,8 +46,8 @@ data "aws_iam_policy_document" "base" {
       "s3:List*"
     ]
     resources = [
-      data.aws_s3_bucket.this.arn,
-      "${data.aws_s3_bucket.this.arn}/*",
+      var.source_bucket_arn,
+      "${var.source_bucket_arn}/*",
     ]
   }
   statement {
