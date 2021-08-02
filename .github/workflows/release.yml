@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    name: Release
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2.3.4
+
+      - name: Create new release
+        id: release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          extra_plugins: |
+            @semantic-release/git
+            @semantic-release/exec
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
