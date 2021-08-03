@@ -40,4 +40,6 @@ jobs:
           terraform_version: ${{ steps.terraform-version.outputs.version }}
 
       - name: Validate Terraform
-        run: terraform validate
+        run: |
+          terraform init
+          terraform validate
