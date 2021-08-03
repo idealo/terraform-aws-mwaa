@@ -38,3 +38,6 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ steps.terraform-version.outputs.version }}
+
+      - name: Validate Terraform
+        run: terraform validate
