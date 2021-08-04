@@ -1,0 +1,45 @@
+name: Pull Request check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency: "terraform"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v1
+
+      - name: Init TFLint
+        run: tflint --init
+
+      - name: Run TFLint
+        # working-directory: .
+        run: tflint -f compact
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Retrieve .terraform-version
+        id: terraform-version
+        run: echo "::set-output name=version::$(cat .terraform-version)"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ${{ steps.terraform-version.outputs.version }}
+
+      - name: Validate Terraform
+        run: |
+          terraform init
+          terraform validate
