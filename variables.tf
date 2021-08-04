@@ -62,10 +62,18 @@ variable "internet_gateway_id" {
 variable "public_subnet_cidrs" {
   description = "CIDR blocks for the public subnets MWAA uses. Must be at least 2"
   type = list(string)
+  validation {
+    condition = length(var.public_subnet_cidrs) >= 2
+    error_message = "You must enter at least 2 CIDR blocks for public subnets."
+  }
 }
 variable "private_subnet_cidrs" {
   description = "CIDR blocks for the private subnets MWAA uses. Must be at least 2"
   type = list(string)
+  validation {
+    condition = length(var.private_subnet_cidrs) >= 2
+    error_message = "You must enter at least 2 CIDR blocks for private subnets."
+  }
 }
 
 variable "additional_execution_role_policy_document_json" {
