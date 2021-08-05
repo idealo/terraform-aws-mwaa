@@ -43,3 +43,15 @@ jobs:
         run: |
           terraform init
           terraform validate
+
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Execute pre-commit
+        run: pre-commit run terraform_docs
