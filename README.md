@@ -60,7 +60,7 @@ module "airflow" {
 }
 ```
 
-
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 
@@ -130,3 +130,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | n/a |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
