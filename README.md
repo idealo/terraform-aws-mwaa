@@ -5,7 +5,7 @@ Terraform module which creates AWS MWAA resources and connects them together.
 ## How to
 
 Use this code to create a basic MWAA environment (using all default parameters, see [Inputs](#inputs)):
-```
+```terraform
 module "airflow" {
   source = "git@github.com:idealo/terraform-aws-mwaa.git"
 
@@ -24,19 +24,21 @@ module "airflow" {
 
 To give additional permissions to your airflow executions role (e.g. elasticmapreduce:CreateJobFlow to start an EMR cluster), create a Policy document containing the permissions you need:
 
-```
+```terraform
 data aws_iam_policy_document "additional_execution_policy_doc" {
   statement {
     effect = "Allow"
     actions = [
       "<Your permissions>"
     ]
-    resources = ["<YourResource>"]
+    resources = [
+      "<YourResource>"]
   }
+}
 ```
 
 and pass the document json to the module:
-
+terraform
 ```
 module "airflow" {
   ...
@@ -50,7 +52,7 @@ module "airflow" {
 Simply upload the plugins.zip to s3 and pass the relative path inside the MWAA bucket to the `plugins_s3_path` parameter.
 If you zip and upload it via terraform, this would look like this:
 
-```
+```terraform
 module "airflow" {
   ...
   plugins_s3_path = aws_s3_bucket_object.your_plugin.key
