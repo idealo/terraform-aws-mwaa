@@ -22,7 +22,7 @@ module "airflow" {
 
 ### Add permissions to the Airflow execution role
 
-To give additional permissions to your airflow executions role (e.g. CreateJobFlow to start an EMR cluster), create a Policy document containing the permissions you need:
+To give additional permissions to your airflow executions role (e.g. elasticmapreduce:CreateJobFlow to start an EMR cluster), create a Policy document containing the permissions you need:
 
 ```
 data aws_iam_policy_document "additional_execution_policy_doc" {
@@ -48,7 +48,7 @@ module "airflow" {
 ### Add custom plugins
 
 Simply upload the plugins.zip to s3 and pass the relative path inside the MWAA bucket to the `plugins_s3_path` parameter.
-if you zip and upload it via terraform, this would look like this:
+If you zip and upload it via terraform, this would look like this:
 
 ```
 module "airflow" {
