@@ -1,6 +1,65 @@
 # AWS MWAA Terraform Module
 
-Terraform module which creates AWS MWAA resources and connects them together.
+Terraform module which creates AWS MWAA resources and connects them together. 
+
+## How to
+
+Use this code to create a basic MWAA environment (using all default parameters, see [Inputs](#inputs)):
+```terraform
+module "airflow" {
+  source = "git@github.com:idealo/terraform-aws-mwaa.git"
+
+  account_id = "12345679"
+  environment_name = "MyEnvironment"
+  internet_gateway_id = "ig-12345"
+  private_subnet_cidrs = ["10.0.1.0/24","10.0.2.0/24"] # depending on your vpc ip range
+  public_subnet_cidrs = ["10.0.3.0/24","10.0.4.0/24"] # depending on your vpc ip range
+  region = "us-west-1"
+  source_bucket_arn = "arn:aws:s3:::MyMwaaBucket"
+  vpc_id = "vpc-12345"
+}
+```
+
+### Add permissions to the Airflow execution role
+
+To give additional permissions to your airflow executions role (e.g. elasticmapreduce:CreateJobFlow to start an EMR cluster), create a Policy document containing the permissions you need:
+
+```terraform
+data aws_iam_policy_document "additional_execution_policy_doc" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "<Your permissions>"
+    ]
+    resources = [
+      "<YourResource>"]
+  }
+}
+```
+
+and pass the document json to the module:
+terraform
+```
+module "airflow" {
+  ...
+  additional_execution_role_policy_document_json = data.aws_iam_policy_document.additional_execution_policy_doc.json
+  ...
+}
+```
+
+### Add custom plugins
+
+Simply upload the plugins.zip to s3 and pass the relative path inside the MWAA bucket to the `plugins_s3_path` parameter.
+If you zip and upload it via terraform, this would look like this:
+
+```terraform
+module "airflow" {
+  ...
+  plugins_s3_path = aws_s3_bucket_object.your_plugin.key
+  ...
+}
+```
+
 
 <!--- BEGIN_TF_DOCS --->
 ## Requirements
@@ -73,3 +132,4 @@ No modules.
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | n/a |
 
 <!--- END_TF_DOCS --->
+
