@@ -60,8 +60,8 @@ module "airflow" {
 }
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+<!--- BEGIN_TF_DOCS --->
 
 ## Requirements
 
@@ -74,7 +74,7 @@ module "airflow" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.51.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.53.0 |
 
 ## Modules
 
@@ -132,4 +132,5 @@ No modules.
 |------|-------------|
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | n/a |
 
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!--- END_TF_DOCS --->
+
