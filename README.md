@@ -7,8 +7,9 @@ Terraform module which creates AWS MWAA resources and connects them together.
 Use this code to create a basic MWAA environment (using all default parameters, see [Inputs](#inputs)):
 ```terraform
 module "airflow" {
-  source = "git@github.com:idealo/terraform-aws-mwaa.git"
-
+  source = "idealo/terraform-aws-mwaa"
+  version = "0.1.0"
+  
   account_id = "12345679"
   environment_name = "MyEnvironment"
   internet_gateway_id = "ig-12345"
