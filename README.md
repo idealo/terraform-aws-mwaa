@@ -38,8 +38,7 @@ data aws_iam_policy_document "additional_execution_policy_doc" {
 ```
 
 and pass the document json to the module:
-terraform
-```
+```terraform
 module "airflow" {
   ...
   additional_execution_role_policy_document_json = data.aws_iam_policy_document.additional_execution_policy_doc.json
