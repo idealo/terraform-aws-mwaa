@@ -14,7 +14,7 @@ Terraform module which creates AWS MWAA resources and connects them together.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.51.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.52.0 |
 
 ## Modules
 
