@@ -66,17 +66,17 @@ variable "create_networking_config" {
 }
 
 variable "public_subnet_cidrs" {
-  description = "CIDR blocks for the public subnets MWAA uses. Must be at least 2"
+  description = "CIDR blocks for the public subnets MWAA uses. Must be at least 2 if create_network_config=true"
   type = list(string)
-  validation {
-    condition = length(var.public_subnet_cidrs) >= 2
-    error_message = "You must enter at least 2 CIDR blocks for public subnets if network config is enabled."
-  }
+  default = []
 }
 variable "private_subnet_cidrs" {
   description = "CIDR blocks for the private subnets MWAA uses. Must be at least 2"
   type = list(string)
-  default = []
+  validation {
+    condition = length(var.private_subnet_cidrs) >= 2
+    error_message = "You must enter at least 2 CIDR blocks for public subnets. If create_network_config=true then subnets will be created."
+  }
 }
 
 # iam
