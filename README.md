@@ -61,7 +61,7 @@ module "airflow" {
 ```
 
 ### Use your own network config
-If you set ``create_network_config = false`` no subnets, eip, NAT Gateway and Route tables will be created.
+If you set ``create_network_config = false`` no subnets, eip, NAT gateway and route tables will be created.
 **Be aware that you still need the networking resources to get your environment running, follow the [official documentation](https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-create.html) to create them properly.**
 
 
@@ -111,7 +111,7 @@ No modules.
 | <a name="input_additional_execution_role_policy_document_json"></a> [additional\_execution\_role\_policy\_document\_json](#input\_additional\_execution\_role\_policy\_document\_json) | Additional permissions to attach to the base mwaa execution role | `string` | `"{}"` | no |
 | <a name="input_airflow_configuration_options"></a> [airflow\_configuration\_options](#input\_airflow\_configuration\_options) | additional configuration to overwrite airflows standard config | `map(string)` | `{}` | no |
 | <a name="input_airflow_version"></a> [airflow\_version](#input\_airflow\_version) | Airflow version to be used | `string` | `"2.0.2"` | no |
-| <a name="input_create_networking_config"></a> [create\_networking\_config](#input\_create\_networking\_config) | true if networking resources (subnets, eip, NAT Gateway and Route table should be created. | `bool` | `true` | no |
+| <a name="input_create_networking_config"></a> [create\_networking\_config](#input\_create\_networking\_config) | true if networking resources (subnets, eip, NAT gateway and route table) should be created. | `bool` | `true` | no |
 | <a name="input_dag_s3_path"></a> [dag\_s3\_path](#input\_dag\_s3\_path) | Relative path of the dags folder within the source bucket | `string` | `"/dags"` | no |
 | <a name="input_environment_class"></a> [environment\_class](#input\_environment\_class) | n/a | `string` | `"mw1.small"` | no |
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the MWAA environment | `string` | n/a | yes |
