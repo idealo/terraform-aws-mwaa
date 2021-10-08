@@ -59,23 +59,30 @@ variable "internet_gateway_id" {
   description = "ID of the internet gateway to the VPC"
 }
 
-variable "public_subnet_cidrs" {
-  description = "CIDR blocks for the public subnets MWAA uses. Must be at least 2"
-  type = list(string)
-  validation {
-    condition = length(var.public_subnet_cidrs) >= 2
-    error_message = "You must enter at least 2 CIDR blocks for public subnets."
-  }
-}
-variable "private_subnet_cidrs" {
-  description = "CIDR blocks for the private subnets MWAA uses. Must be at least 2"
-  type = list(string)
-  validation {
-    condition = length(var.private_subnet_cidrs) >= 2
-    error_message = "You must enter at least 2 CIDR blocks for private subnets."
-  }
+variable "create_networking_config" {
+  description = "true if networking resources (subnets, eip, NAT gateway and route table) should be created."
+  type = bool
+  default = true
 }
 
+variable "public_subnet_cidrs" {
+  description = "CIDR blocks for the public subnets MWAA uses. Must be at least 2 if create_network_config=true"
+  type = list(string)
+  default = []
+}
+variable "private_subnet_cidrs" {
+  description = "CIDR blocks for the private subnets MWAA uses. Must be at least 2 if create_network_config=true"
+  type = list(string)
+  default = []
+}
+
+variable "private_subnet_ids" {
+  description = "Subnet Ids of the existing private subnets that should be used if create_network_config=false"
+  type = list(string)
+  default = []
+}
+
+# iam
 variable "additional_execution_role_policy_document_json" {
   description = "Additional permissions to attach to the base mwaa execution role"
   type = string

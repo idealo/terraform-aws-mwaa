@@ -60,6 +60,10 @@ module "airflow" {
 }
 ```
 
+### Use your own network config
+If you set ``create_network_config = false`` no subnets, eip, NAT gateway and route tables will be created.
+**Be aware that you still need the networking resources to get your environment running, follow the [official documentation](https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-create.html) to create them properly.**
+
 
 <!--- BEGIN_TF_DOCS --->
 ## Requirements
@@ -107,6 +111,7 @@ No modules.
 | <a name="input_additional_execution_role_policy_document_json"></a> [additional\_execution\_role\_policy\_document\_json](#input\_additional\_execution\_role\_policy\_document\_json) | Additional permissions to attach to the base mwaa execution role | `string` | `"{}"` | no |
 | <a name="input_airflow_configuration_options"></a> [airflow\_configuration\_options](#input\_airflow\_configuration\_options) | additional configuration to overwrite airflows standard config | `map(string)` | `{}` | no |
 | <a name="input_airflow_version"></a> [airflow\_version](#input\_airflow\_version) | Airflow version to be used | `string` | `"2.0.2"` | no |
+| <a name="input_create_networking_config"></a> [create\_networking\_config](#input\_create\_networking\_config) | true if networking resources (subnets, eip, NAT gateway and route table) should be created. | `bool` | `true` | no |
 | <a name="input_dag_s3_path"></a> [dag\_s3\_path](#input\_dag\_s3\_path) | Relative path of the dags folder within the source bucket | `string` | `"/dags"` | no |
 | <a name="input_environment_class"></a> [environment\_class](#input\_environment\_class) | n/a | `string` | `"mw1.small"` | no |
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the MWAA environment | `string` | n/a | yes |
@@ -115,8 +120,9 @@ No modules.
 | <a name="input_min_workers"></a> [min\_workers](#input\_min\_workers) | n/a | `string` | `"1"` | no |
 | <a name="input_plugins_s3_object_version"></a> [plugins\_s3\_object\_version](#input\_plugins\_s3\_object\_version) | n/a | `any` | `null` | no |
 | <a name="input_plugins_s3_path"></a> [plugins\_s3\_path](#input\_plugins\_s3\_path) | relative path of the plugins.zip within the source bucket | `string` | `null` | no |
-| <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for the private subnets MWAA uses. Must be at least 2 | `list(string)` | n/a | yes |
-| <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for the public subnets MWAA uses. Must be at least 2 | `list(string)` | n/a | yes |
+| <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for the private subnets MWAA uses. Must be at least 2 if create\_network\_config=true | `list(string)` | `[]` | no |
+| <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | Subnet Ids of the existing private subnets that should be used if create\_network\_config=false | `list(string)` | `[]` | no |
+| <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for the public subnets MWAA uses. Must be at least 2 if create\_network\_config=true | `list(string)` | `[]` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS Region where the environment and its resources will be created | `string` | n/a | yes |
 | <a name="input_requirements_s3_object_version"></a> [requirements\_s3\_object\_version](#input\_requirements\_s3\_object\_version) | n/a | `any` | `null` | no |
 | <a name="input_requirements_s3_path"></a> [requirements\_s3\_path](#input\_requirements\_s3\_path) | relative path of the requirements.txt (incl. filename) within the source bucket | `string` | `null` | no |
