@@ -75,7 +75,7 @@ variable "private_subnet_cidrs" {
   type = list(string)
   validation {
     condition = length(var.private_subnet_cidrs) >= 2
-    error_message = "You must enter at least 2 CIDR blocks for public subnets. If create_network_config=true then subnets will be created."
+    error_message = "You must enter at least 2 CIDR blocks for private subnets. If create_network_config=true then subnets will be created."
   }
 }
 
