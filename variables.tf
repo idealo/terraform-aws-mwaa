@@ -71,12 +71,15 @@ variable "public_subnet_cidrs" {
   default = []
 }
 variable "private_subnet_cidrs" {
-  description = "CIDR blocks for the private subnets MWAA uses. Must be at least 2"
+  description = "CIDR blocks for the private subnets MWAA uses. Must be at least 2 if create_network_config=true"
   type = list(string)
-  validation {
-    condition = length(var.private_subnet_cidrs) >= 2
-    error_message = "You must enter at least 2 CIDR blocks for private subnets. If create_network_config=true then subnets will be created."
-  }
+  default = []
+}
+
+variable "private_subnet_ids" {
+  description = "Subnet Ids of the existing private subnets that should be used if create_network_config=false"
+  type = list(string)
+  default = []
 }
 
 # iam

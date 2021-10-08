@@ -17,7 +17,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  count = var.create_networking_config ? length(var.public_subnet_cidrs): 0
+  count = var.create_networking_config ? length(var.private_subnet_cidrs): 0
   cidr_block = var.private_subnet_cidrs[count.index]
   vpc_id = var.vpc_id
   map_public_ip_on_launch = false
