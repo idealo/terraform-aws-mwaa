@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2.3.5
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v1
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2.3.5
 
       - name: Retrieve .terraform-version
         id: terraform-version
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.5
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
