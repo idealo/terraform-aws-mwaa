@@ -60,8 +60,8 @@ module "airflow" {
 }
 ```
 
-### Use your own network config
-If you set ``create_network_config = false`` no subnets, eip, NAT gateway and route tables will be created.
+### Use your own networking config
+If you set ``create_networking_config = false`` no subnets, eip, NAT gateway and route tables will be created.
 **Be aware that you still need the networking resources to get your environment running, follow the [official documentation](https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-create.html) to create them properly.**
 
 

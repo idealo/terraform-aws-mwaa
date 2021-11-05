@@ -1,12 +1,9 @@
 name: Pull Request check
 
 on:
-  pull_request:
-    branches:
-      - main
+  pull_request_target:
     paths:
       - "**/*.tf"
-      - "**/*.yml"
       - "**/*.hcl"
 
 concurrency: "terraform"
@@ -63,3 +60,4 @@ jobs:
           output-file: README.md
           output-method: inject
           git-push: "true"
+
