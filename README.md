@@ -77,7 +77,7 @@ If you set ``create_networking_config = false`` no subnets, eip, NAT gateway and
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.64.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.64.2 |
 
 ## Modules
 
