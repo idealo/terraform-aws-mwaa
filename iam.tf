@@ -112,7 +112,7 @@ data "aws_iam_policy_document" "base" {
     condition {
       test = "StringLike"
       values = [
-        "sqs.eu-central-1.amazonaws.com"]
+        "sqs.${var.region}.amazonaws.com"]
       variable = "kms:ViaService"
     }
   }
