@@ -38,15 +38,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-
-      - name: Retrieve .terraform-version
-        id: terraform-version
-        run: echo "::set-output name=version::$(cat .terraform-version)"
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: ${{ steps.terraform-version.outputs.version }}
 
       - name: Validate Terraform
         run: |
