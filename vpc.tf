@@ -45,7 +45,7 @@ resource "aws_nat_gateway" "this" {
 }
 
 resource "aws_route_table" "public" {
-  count = var.create_networking_config ? length(var.public_subnet_cidrs): 0
+  count = var.create_networking_config ? 1: 0
   vpc_id = var.vpc_id
   route {
     cidr_block = "0.0.0.0/0"
