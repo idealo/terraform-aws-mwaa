@@ -1,13 +1,13 @@
 resource "aws_iam_role" "this" {
-  name = "mwaa-${var.environment_name}-execution-role"
+  name               = "mwaa-${var.environment_name}-execution-role"
   assume_role_policy = data.aws_iam_policy_document.assume.json
-  tags = var.tags
+  tags               = var.tags
 }
 
 resource "aws_iam_role_policy" "this" {
-  name = "mwaa-${var.environment_name}-execution-policy"
+  name   = "mwaa-${var.environment_name}-execution-policy"
   policy = data.aws_iam_policy_document.this.json
-  role = aws_iam_role.this.id
+  role   = aws_iam_role.this.id
 }
 
 data "aws_iam_policy_document" "assume" {
@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "assume" {
 data "aws_iam_policy_document" "base" {
   version = "2012-10-17"
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "airflow:PublishMetrics"
     ]
@@ -39,7 +39,15 @@ data "aws_iam_policy_document" "base" {
     ]
   }
   statement {
-    effect = "Allow"
+    effect = "Deny"
+    actions = ["s3:ListAllMyBuckets"]
+    resources = [
+      var.source_bucket_arn,
+      "${var.source_bucket_arn}/*",
+    ]
+  }
+  statement {
+    effect  = "Allow"
     actions = [
       "s3:GetObject*",
       "s3:GetBucket*",
@@ -51,7 +59,14 @@ data "aws_iam_policy_document" "base" {
     ]
   }
   statement {
-    effect = "Allow"
+    effect  = "Allow"
+    actions = [
+      "s3:GetAccountPublicAccessBlock"
+    ]
+    resources = ["*"]
+  }
+  statement {
+    effect  = "Allow"
     actions = [
       "logs:CreateLogStream",
       "logs:CreateLogGroup",
@@ -66,7 +81,7 @@ data "aws_iam_policy_document" "base" {
     ]
   }
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "logs:DescribeLogGroups"
     ]
@@ -76,7 +91,7 @@ data "aws_iam_policy_document" "base" {
   }
   statement {
 
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "cloudwatch:PutMetricData"
     ]
@@ -85,7 +100,7 @@ data "aws_iam_policy_document" "base" {
     ]
   }
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "sqs:ChangeMessageVisibility",
       "sqs:DeleteMessage",
@@ -99,7 +114,7 @@ data "aws_iam_policy_document" "base" {
     ]
   }
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "kms:Decrypt",
       "kms:DescribeKey",
@@ -110,9 +125,10 @@ data "aws_iam_policy_document" "base" {
       "arn:aws:kms:*:${var.account_id}:key/*"
     ]
     condition {
-      test = "StringLike"
+      test   = "StringLike"
       values = [
-        "sqs.${var.region}.amazonaws.com"]
+        "sqs.${var.region}.amazonaws.com"
+      ]
       variable = "kms:ViaService"
     }
   }
