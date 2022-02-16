@@ -25,7 +25,7 @@ variable "source_bucket_arn" {
 variable "dag_s3_path" {
   description = "Relative path of the dags folder within the source bucket"
   type = string
-  default = "/dags"
+  default = "dags/"
 }
 variable "plugins_s3_path" {
   type = string
