@@ -121,13 +121,14 @@ data "aws_iam_policy_document" "base" {
       "kms:GenerateDataKey*",
       "kms:Encrypt"
     ]
-    not_resources = [
-      "arn:aws:kms:*:${var.account_id}:key/*"
+    resources = [
+      var.kms_key == null ? aws_kms_key.this[0].arn : var.kms_key
     ]
     condition {
       test   = "StringLike"
       values = [
-        "sqs.${var.region}.amazonaws.com"
+        "sqs.${var.region}.amazonaws.com",
+        "s3.${var.region}.amazonaws.com"
       ]
       variable = "kms:ViaService"
     }

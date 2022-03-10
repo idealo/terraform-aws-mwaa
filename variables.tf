@@ -107,6 +107,12 @@ variable "webserver_access_mode" {
   default = null
 }
 
+variable "kms_key" {
+  description = "KMS CMK ARN. MUST reference the same KMS key as used by S3 bucket specified by source_bucket_arn, if the bucket uses KMS. If not specified, an own KMS key will be created/managed."
+  type        = string
+  default     = null
+}
+
 variable "tags" {
   type = map(string)
   default = {}

@@ -50,6 +50,8 @@ resource "aws_mwaa_environment" "this" {
 
   webserver_access_mode = var.webserver_access_mode
 
+  kms_key = var.kms_key ? var.kms_key : aws_kms_key.this[0].arn
+
   tags = merge({
     Name = "mwaa-${var.environment_name}"
   }, var.tags)
