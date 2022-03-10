@@ -1,5 +1,5 @@
 resource "aws_kms_key" "this" {
-  count                    = var.kms_key == null ? 0 : 1
+  count                    = var.kms_key == null ? 1 : 0
   description              = "KMS key for MWAA created by idealo/terraform-aws-mwaa"
   key_usage                = "ENCRYPT_DECRYPT"
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
@@ -10,7 +10,7 @@ resource "aws_kms_key" "this" {
 }
 
 data "aws_iam_policy_document" "kms_log_access" {
-  count   = var.kms_key == null ? 0 : 1
+  count   = var.kms_key == null ? 1 : 0
   version = "2012-10-17"
   statement {
     sid       = "Allow logs access"
