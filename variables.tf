@@ -107,8 +107,8 @@ variable "webserver_access_mode" {
   default     = null
 }
 
-variable "kms_key" {
-  description = "KMS CMK ARN. MUST reference the same KMS key as used by S3 bucket specified by source_bucket_arn, if the bucket uses KMS. If not specified, an own KMS key will be created/managed."
+variable "kms_key_arn" {
+  description = "KMS CMK ARN to use by MWAA for data encryption. MUST reference the same KMS key as used by S3 bucket specified by source_bucket_arn, if the bucket uses KMS. If not specified, the default AWS owned key for MWAA will be used for backward compatibility with version 1.0.1 of this module."
   type        = string
   default     = null
 }
