@@ -20,7 +20,7 @@ jobs:
 
 
       - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v1
+        uses: terraform-linters/setup-tflint@v2
 
       - name: Init TFLint
         run: tflint --init
