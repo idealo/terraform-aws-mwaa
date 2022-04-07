@@ -50,6 +50,7 @@ resource "aws_mwaa_environment" "this" {
   }
 
   webserver_access_mode = var.webserver_access_mode
+  weekly_maintenance_window_start = var.weekly_maintenance_window_start
 
   kms_key = var.kms_key_arn
 
