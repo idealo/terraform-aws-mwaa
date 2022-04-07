@@ -172,3 +172,9 @@ variable "worker_logs_level" {
   description = "One of: DEBUG, INFO, WARNING, ERROR, CRITICAL"
   default     = "WARNING"
 }
+
+variable "weekly_maintenance_window_start" {
+  type = string
+  description = "The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time to start weekly maintenance updates of your environment in the following format: DAY:HH:MM. For example: TUE:03:30. You can specify a start time in 30 minute increments only"
+  default = "MON:01:00"
+}
