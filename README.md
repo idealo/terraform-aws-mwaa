@@ -169,6 +169,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | n/a |
+| <a name="output_mwaa_nat_gateway_public_ips"></a> [mwaa\_nat\_gateway\_public\_ips](#output\_mwaa\_nat\_gateway\_public\_ips) | List of the ips of the nat gateways created by this module. |
 
 <!--- END_TF_DOCS --->
 
