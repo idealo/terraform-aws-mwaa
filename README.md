@@ -86,7 +86,7 @@ resource "aws_s3_bucket_public_access_block" "mwaa" {
 ```
 
 
-<!--- BEGIN_TF_DOCS --->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -170,5 +170,4 @@ No modules.
 |------|-------------|
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | n/a |
 
-<!--- END_TF_DOCS --->
-
+<!-- END_TF_DOCS -->
