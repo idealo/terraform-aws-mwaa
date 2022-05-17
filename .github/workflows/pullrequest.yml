@@ -1,7 +1,7 @@
 name: Pull Request check
 
 on:
-  pull_request_target:
+  pull_request:
     paths:
       - "**/*.tf"
       - "**/*.hcl"
@@ -14,9 +14,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v2
@@ -33,9 +30,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -50,8 +44,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
         uses: terraform-docs/gh-actions@v1
