@@ -1,7 +1,7 @@
 name: Pull Request check
 
 on:
-  pull_request_target:
+  pull_request:
     paths:
       - "**/*.tf"
       - "**/*.hcl"
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Setup TFLint
@@ -34,7 +34,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Setup Terraform
