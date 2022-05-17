@@ -49,6 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
