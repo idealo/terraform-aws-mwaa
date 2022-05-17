@@ -49,11 +49,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-<<<<<<< HEAD
-          ref: ${{ github.event.pull_request.head.ref }}
-=======
           ref: ${{ github.event.pull_request.head.sha }}
->>>>>>> main
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
         uses: terraform-docs/gh-actions@v1
