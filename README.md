@@ -72,7 +72,7 @@ MWAA needs a S3 bucket to store the DAG files. Here is a minimal configuration f
 resource "aws_s3_bucket" "mwaa" {
   bucket = "…"
 }
-# for 
+
 resource "aws_s3_bucket_versioning" "mwaa" {
   bucket = aws_s3_bucket.mwaa.bucket
   versioning_configuration {
