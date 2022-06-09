@@ -67,14 +67,19 @@ If you set ``create_networking_config = false`` no subnets, eip, NAT gateway and
 
 ### S3 Bucket configuration
 MWAA needs a S3 bucket to store the DAG files. Here is a minimal configuration for this S3 bucket:
+
 ```terraform
 resource "aws_s3_bucket" "mwaa" {
   bucket = "…"
-  versioning {
-    # required: https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html
-    enabled = true
+}
+
+resource "aws_s3_bucket_versioning" "mwaa" {
+  bucket = aws_s3_bucket.mwaa.bucket
+  versioning_configuration {
+    status = "Enabled"
   }
 }
+
 resource "aws_s3_bucket_public_access_block" "mwaa" {
   # required: https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html
   bucket                  = aws_s3_bucket.mwaa.id
@@ -92,13 +97,13 @@ resource "aws_s3_bucket_public_access_block" "mwaa" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.75.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.17.1 |
 
 ## Modules
 
