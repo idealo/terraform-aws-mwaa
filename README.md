@@ -134,6 +134,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | Account ID of the account in which MWAA will be started | `string` | n/a | yes |
+| <a name="input_additional_associated_security_group_ids"></a> [additional\_associated\_security\_group\_ids](#input\_additional\_associated\_security\_group\_ids) | Security group IDs of existing security groups that should be associated with the MWAA environment. | `list(string)` | `[]` | no |
 | <a name="input_additional_execution_role_policy_document_json"></a> [additional\_execution\_role\_policy\_document\_json](#input\_additional\_execution\_role\_policy\_document\_json) | Additional permissions to attach to the base mwaa execution role | `string` | `"{}"` | no |
 | <a name="input_airflow_configuration_options"></a> [airflow\_configuration\_options](#input\_airflow\_configuration\_options) | additional configuration to overwrite airflows standard config | `map(string)` | `{}` | no |
 | <a name="input_airflow_version"></a> [airflow\_version](#input\_airflow\_version) | Airflow version to be used | `string` | `"2.0.2"` | no |
@@ -150,7 +151,7 @@ No modules.
 | <a name="input_plugins_s3_object_version"></a> [plugins\_s3\_object\_version](#input\_plugins\_s3\_object\_version) | n/a | `any` | `null` | no |
 | <a name="input_plugins_s3_path"></a> [plugins\_s3\_path](#input\_plugins\_s3\_path) | relative path of the plugins.zip within the source bucket | `string` | `null` | no |
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | CIDR blocks for the private subnets MWAA uses. Must be at least 2 if create\_networking\_config=true | `list(string)` | `[]` | no |
-| <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | Subnet Ids of the existing private subnets that should be used if create\_networking\_config=false | `list(string)` | `[]` | no |
+| <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | Subnet IDs of the existing private subnets that should be used if create\_networking\_config=false | `list(string)` | `[]` | no |
 | <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | CIDR blocks for the public subnets MWAA uses. Must be at least 2 if create\_networking\_config=true | `list(string)` | `[]` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS Region where the environment and its resources will be created | `string` | n/a | yes |
 | <a name="input_requirements_s3_object_version"></a> [requirements\_s3\_object\_version](#input\_requirements\_s3\_object\_version) | n/a | `any` | `null` | no |
