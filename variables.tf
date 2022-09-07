@@ -77,7 +77,13 @@ variable "private_subnet_cidrs" {
 }
 
 variable "private_subnet_ids" {
-  description = "Subnet Ids of the existing private subnets that should be used if create_networking_config=false"
+  description = "Subnet IDs of the existing private subnets that should be used if create_networking_config=false"
+  type        = list(string)
+  default     = []
+}
+
+variable "additional_associated_security_group_ids" {
+  description = "Security group IDs of existing security groups that should be associated with the MWAA environment."
   type        = list(string)
   default     = []
 }
@@ -174,7 +180,7 @@ variable "worker_logs_level" {
 }
 
 variable "weekly_maintenance_window_start" {
-  type = string
+  type        = string
   description = "The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time to start weekly maintenance updates of your environment in the following format: DAY:HH:MM. For example: TUE:03:30. You can specify a start time in 30 minute increments only"
-  default = "MON:01:00"
+  default     = "MON:01:00"
 }
