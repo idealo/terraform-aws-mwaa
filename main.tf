@@ -43,13 +43,11 @@ resource "aws_mwaa_environment" "this" {
   }
 
   network_configuration {
-    security_group_ids = [
-      aws_security_group.this.id
-    ]
+    security_group_ids = concat([aws_security_group.this.id], var.additional_associated_security_group_ids)
     subnet_ids         = var.create_networking_config ? aws_subnet.private[*].id : var.private_subnet_ids
   }
 
-  webserver_access_mode = var.webserver_access_mode
+  webserver_access_mode           = var.webserver_access_mode
   weekly_maintenance_window_start = var.weekly_maintenance_window_start
 
   kms_key = var.kms_key_arn
