@@ -175,4 +175,5 @@ No modules.
 |------|-------------|
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | The arn of the created MWAA environment. |
 | <a name="output_mwaa_nat_gateway_public_ips"></a> [mwaa\_nat\_gateway\_public\_ips](#output\_mwaa\_nat\_gateway\_public\_ips) | List of the ips of the nat gateways created by this module. |
+| <a name="output_mwaa_webserver_url"></a> [mwaa\_webserver\_url](#output\_mwaa\_webserver\_url) | The webserver URL of the MWAA Environment. |
 <!-- END_TF_DOCS -->
