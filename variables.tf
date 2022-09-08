@@ -34,7 +34,7 @@ variable "plugins_s3_path" {
 }
 variable "plugins_s3_object_version" {
   default = null
-  type = string
+  type    = string
 }
 variable "requirements_s3_path" {
   type        = string
@@ -43,7 +43,7 @@ variable "requirements_s3_path" {
 }
 variable "requirements_s3_object_version" {
   default = null
-  type = string
+  type    = string
 }
 
 # airflow.cfg values
@@ -56,11 +56,11 @@ variable "airflow_configuration_options" {
 # networking
 variable "vpc_id" {
   description = "VPC id of the VPC in which the environments resources are created"
-  type = string
+  type        = string
 }
 variable "internet_gateway_id" {
   description = "ID of the internet gateway to the VPC"
-  type = string
+  type        = string
 }
 variable "create_networking_config" {
   description = "true if networking resources (subnets, eip, NAT gateway and route table) should be created."
@@ -82,6 +82,11 @@ variable "private_subnet_ids" {
   type        = list(string)
   default     = []
 }
+variable "additional_associated_security_group_ids" {
+  description = "Security group IDs of existing security groups that should be associated with the MWAA environment."
+  type        = list(string)
+  default     = []
+}
 
 # iam
 variable "additional_execution_role_policy_document_json" {
@@ -92,18 +97,18 @@ variable "additional_execution_role_policy_document_json" {
 
 # scaling
 variable "max_workers" {
-  default = "10"
+  default     = "10"
   description = "numeric string, min 1"
-  type = string
+  type        = string
 }
 variable "min_workers" {
-  default = "1"
+  default     = "1"
   description = "numeric string, min 1"
-  type = string
+  type        = string
 }
 variable "environment_class" {
   default = "mw1.small"
-  type = string
+  type    = string
 }
 
 # security
@@ -171,7 +176,7 @@ variable "worker_logs_level" {
 
 # maintenance
 variable "weekly_maintenance_window_start" {
-  type = string
+  type        = string
   description = "The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time to start weekly maintenance updates of your environment in the following format: DAY:HH:MM. For example: TUE:03:30. You can specify a start time in 30 minute increments only"
-  default = "MON:01:00"
+  default     = "MON:01:00"
 }

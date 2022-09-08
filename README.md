@@ -134,6 +134,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | Account ID of the account in which MWAA will be started | `string` | n/a | yes |
+| <a name="input_additional_associated_security_group_ids"></a> [additional\_associated\_security\_group\_ids](#input\_additional\_associated\_security\_group\_ids) | Security group IDs of existing security groups that should be associated with the MWAA environment. | `list(string)` | `[]` | no |
 | <a name="input_additional_execution_role_policy_document_json"></a> [additional\_execution\_role\_policy\_document\_json](#input\_additional\_execution\_role\_policy\_document\_json) | Additional permissions to attach to the base mwaa execution role | `string` | `"{}"` | no |
 | <a name="input_airflow_configuration_options"></a> [airflow\_configuration\_options](#input\_airflow\_configuration\_options) | additional configuration to overwrite airflows standard config | `map(string)` | `{}` | no |
 | <a name="input_airflow_version"></a> [airflow\_version](#input\_airflow\_version) | Airflow version to be used | `string` | `"2.0.2"` | no |
