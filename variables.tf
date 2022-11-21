@@ -59,7 +59,7 @@ variable "vpc_id" {
   type        = string
 }
 variable "internet_gateway_id" {
-  description = "ID of the internet gateway to the VPC"
+  description = "ID of the internet gateway to the VPC, if not set and create_networking_config = true an internet gateway will be created"
   type        = string
   default     = null
 }

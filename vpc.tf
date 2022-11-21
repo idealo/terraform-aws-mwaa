@@ -1,10 +1,3 @@
-/*
-This module deploys a VPC, with a pair of public and private subnets spread
-across two Availability Zones. It deploys an internet gateway, with a default
-route on the public subnets. It deploys a pair of NAT gateways (one in each
-AZ), and default routes for them in the private subnets.
-*/
-
 resource "aws_subnet" "public" {
   count                   = var.create_networking_config ? length(var.public_subnet_cidrs) : 0
   cidr_block              = var.public_subnet_cidrs[count.index]
@@ -57,7 +50,7 @@ resource "aws_route_table" "public" {
   vpc_id = var.vpc_id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = var.internet_gateway_id==null ? var.internet_gateway_id : aws_internet_gateway.this[0].id
+    gateway_id = var.internet_gateway_id!=null ? var.internet_gateway_id : aws_internet_gateway.this[0].id
   }
   tags = merge({
     Name = "mwaa-${var.environment_name}-public-routes"
