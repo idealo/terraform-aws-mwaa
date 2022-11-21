@@ -45,7 +45,7 @@ resource "aws_nat_gateway" "this" {
 }
 
 resource "aws_internet_gateway" "this" {
-  count  = var.create_networking_config && var.internet_gateway_id!=null ? 1 : 0
+  count  = var.create_networking_config && var.internet_gateway_id==null ? 1 : 0
   vpc_id = var.vpc_id
   tags   = merge({
     Name = "mwaa-${var.environment_name}-internet-gateway"
@@ -57,7 +57,7 @@ resource "aws_route_table" "public" {
   vpc_id = var.vpc_id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = var.create_networking_config && var.internet_gateway_id!=null ? var.internet_gateway_id : aws_internet_gateway.this[0].id
+    gateway_id = var.internet_gateway_id==null ? var.internet_gateway_id : aws_internet_gateway.this[0].id
   }
   tags = merge({
     Name = "mwaa-${var.environment_name}-public-routes"
