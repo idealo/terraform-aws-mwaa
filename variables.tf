@@ -61,6 +61,7 @@ variable "vpc_id" {
 variable "internet_gateway_id" {
   description = "ID of the internet gateway to the VPC"
   type        = string
+  default     = null
 }
 variable "create_networking_config" {
   description = "true if networking resources (subnets, eip, NAT gateway and route table) should be created."
