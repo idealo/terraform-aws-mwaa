@@ -45,6 +45,15 @@ variable "requirements_s3_object_version" {
   default = null
   type    = string
 }
+variable "startup_script_s3_path" {
+  type        = string
+  description = "The relative path to the script hosted in your bucket. The script runs as your environment starts before starting the Apache Airflow process."
+  default     = null
+}
+variable "startup_script_s3_object_version" {
+  default = null
+  type    = string
+}
 
 # airflow.cfg values
 variable "airflow_configuration_options" {
