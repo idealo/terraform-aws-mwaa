@@ -1,8 +1,18 @@
 # AWS MWAA Terraform Module
 
-Terraform module which creates AWS MWAA resources and connects them together. 
+Terraform module which creates AWS MWAA resources and connects them together.
 
 ## How to
+
+### Contribute
+
+When creating PRs from forks, make sure to create them against the `fork_prs` branch. One check, the automated doc generation, 
+will fail, but we (maintainers) can merge your PR into `fork_prs` and create a new PR with working doc generation from `fork_prs` 
+against `main`, preserving your commits (so your contribution is visible on GitHub). 
+
+If the fork_prs branch does not exist, please create an issue.
+
+### Use 
 
 Use this code to create a basic MWAA environment (using all default parameters, see [Inputs](#inputs)):
 ```terraform
