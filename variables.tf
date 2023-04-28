@@ -1,4 +1,7 @@
 # general information
+variable "dummy_var" {
+  type = string
+}
 variable "region" {
   type        = string
   description = "AWS Region where the environment and its resources will be created"
