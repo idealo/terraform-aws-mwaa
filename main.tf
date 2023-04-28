@@ -1,3 +1,4 @@
+# dummy comment
 resource "aws_mwaa_environment" "this" {
   airflow_configuration_options = var.airflow_configuration_options
 
