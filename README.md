@@ -143,6 +143,7 @@ No modules.
 | <a name="input_dag_processing_logs_enabled"></a> [dag\_processing\_logs\_enabled](#input\_dag\_processing\_logs\_enabled) | n/a | `bool` | `true` | no |
 | <a name="input_dag_processing_logs_level"></a> [dag\_processing\_logs\_level](#input\_dag\_processing\_logs\_level) | One of: DEBUG, INFO, WARNING, ERROR, CRITICAL | `string` | `"WARNING"` | no |
 | <a name="input_dag_s3_path"></a> [dag\_s3\_path](#input\_dag\_s3\_path) | Relative path of the dags folder within the source bucket | `string` | `"dags/"` | no |
+| <a name="input_dummy_var"></a> [dummy\_var](#input\_dummy\_var) | general information | `string` | n/a | yes |
 | <a name="input_environment_class"></a> [environment\_class](#input\_environment\_class) | n/a | `string` | `"mw1.small"` | no |
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the MWAA environment | `string` | n/a | yes |
 | <a name="input_internet_gateway_id"></a> [internet\_gateway\_id](#input\_internet\_gateway\_id) | ID of the internet gateway to the VPC, if not set and create\_networking\_config = true an internet gateway will be created | `string` | `null` | no |
