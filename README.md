@@ -1,119 +1,30 @@
 # AWS MWAA Terraform Module
 
-Terraform
-module
-which
-creates
-AWS
-MWAA
-resources
-and
-connects
-them
-together.
+Terraform module which creates AWS MWAA resources and connects them together.
 
 ## How to
 
 ### Contribute
 
-When
-creating
-PRs
-from
-forks,
-make
-sure
-to
-create
-them
-against
-the `fork_prs`
-branch.
-One
-check,
-the
-automated
-doc
-generation,
-will
-fail,
-but
-we (
-maintainers)
-can
-merge
-your
-PR
-into `fork_prs`
-and
-create
-a
-new
-PR
-with
-working
-doc
-generation
-from `fork_prs`
-against `main`
-,
-preserving
-your
-commits (
-so
-your
-contribution
-is
-visible
-on
-GitHub)
-.
+When creating PRs from forks, make sure to create them against the `fork_prs` branch. One check, the automated doc generation, 
+will fail, but we (maintainers) can merge your PR into `fork_prs` and create a new PR with working doc generation from `fork_prs` 
+against `main`, preserving your commits (so your contribution is visible on GitHub). 
 
-If
-the
-fork_prs
-branch
-does
-not
-exist,
-please
-create
-an
-issue.
+If the fork_prs branch does not exist, please create an issue.
 
-### Use
+### Use 
 
-Use
-this
-code
-to
-create
-a
-basic
-MWAA
-environment (
-using
-all
-default
-parameters,
-see [Inputs](#inputs)):
-
+Use this code to create a basic MWAA environment (using all default parameters, see [Inputs](#inputs)):
 ```terraform
 module "airflow" {
   source = "idealo/mwaa/aws"
   version = "x.x.x"
-
+  
   account_id = "12345679"
   environment_name = "MyEnvironment"
   internet_gateway_id = "ig-12345"
-  private_subnet_cidrs = [
-    "10.0.1.0/24",
-    "10.0.2.0/24"]
-  # depending on your vpc ip range
-  public_subnet_cidrs = [
-    "10.0.3.0/24",
-    "10.0.4.0/24"]
-  # depending on your vpc ip range
+  private_subnet_cidrs = ["10.0.1.0/24","10.0.2.0/24"] # depending on your vpc ip range
+  public_subnet_cidrs = ["10.0.3.0/24","10.0.4.0/24"] # depending on your vpc ip range
   region = "us-west-1"
   source_bucket_arn = "arn:aws:s3:::MyMwaaBucket"
   vpc_id = "vpc-12345"
@@ -122,33 +33,7 @@ module "airflow" {
 
 ### Add permissions to the Airflow execution role
 
-To
-give
-additional
-permissions
-to
-your
-airflow
-executions
-role (
-e.g.
-elasticmapreduce:
-CreateJobFlow
-to
-start
-an
-EMR
-cluster)
-,
-create
-a
-Policy
-document
-containing
-the
-permissions
-you
-need:
+To give additional permissions to your airflow executions role (e.g. elasticmapreduce:CreateJobFlow to start an EMR cluster), create a Policy document containing the permissions you need:
 
 ```terraform
 data aws_iam_policy_document "additional_execution_policy_doc" {
@@ -163,124 +48,35 @@ data aws_iam_policy_document "additional_execution_policy_doc" {
 }
 ```
 
-and
-pass
-the
-document
-json
-to
-the
-module:
-
+and pass the document json to the module:
 ```terraform
 module "airflow" {
   ...
-additional_execution_role_policy_document_json = data.aws_iam_policy_document.additional_execution_policy_doc.json
-...
+  additional_execution_role_policy_document_json = data.aws_iam_policy_document.additional_execution_policy_doc.json
+  ...
 }
 ```
 
 ### Add custom plugins
 
-Simply
-upload
-the
-plugins.zip
-to
-s3
-and
-pass
-the
-relative
-path
-inside
-the
-MWAA
-bucket
-to
-the `plugins_s3_path`
-parameter.
-If
-you
-zip
-and
-upload
-it
-via
-terraform,
-this
-would
-look
-like
-this:
+Simply upload the plugins.zip to s3 and pass the relative path inside the MWAA bucket to the `plugins_s3_path` parameter.
+If you zip and upload it via terraform, this would look like this:
 
 ```terraform
 module "airflow" {
   ...
-plugins_s3_path = aws_s3_bucket_object.your_plugin.key
-...
+  plugins_s3_path = aws_s3_bucket_object.your_plugin.key
+  ...
 }
 ```
 
 ### Use your own networking config
+If you set ``create_networking_config = false`` no subnets, eip, NAT gateway and route tables will be created.
+**Be aware that you still need the networking resources to get your environment running, follow the [official documentation](https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-create.html) to create them properly.**
 
-If
-you
-set ``create_networking_config = false``
-no
-subnets,
-eip,
-NAT
-gateway
-and
-route
-tables
-will
-be
-created.
-**
-Be
-aware
-that
-you
-still
-need
-the
-networking
-resources
-to
-get
-your
-environment
-running,
-follow
-the [official documentation](https://docs.aws.amazon.com/mwaa/latest/userguide/vpc-create.html)
-to
-create
-them
-properly.**
 
 ### S3 Bucket configuration
-
-MWAA
-needs
-a
-S3
-bucket
-to
-store
-the
-DAG
-files.
-Here
-is
-a
-minimal
-configuration
-for
-this
-S3
-bucket:
+MWAA needs a S3 bucket to store the DAG files. Here is a minimal configuration for this S3 bucket:
 
 ```terraform
 resource "aws_s3_bucket" "mwaa" {
@@ -296,21 +92,21 @@ resource "aws_s3_bucket_versioning" "mwaa" {
 
 resource "aws_s3_bucket_public_access_block" "mwaa" {
   # required: https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html
-  bucket = aws_s3_bucket.mwaa.id
-  block_public_acls = true
-  block_public_policy = true
-  ignore_public_acls = true
+  bucket                  = aws_s3_bucket.mwaa.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
   restrict_public_buckets = true
 }
 ```
 
-<!-- BEGIN_TF_DOCS -->
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | > =1.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.0 |
 
 ## Providers
@@ -321,8 +117,7 @@ resource "aws_s3_bucket_public_access_block" "mwaa" {
 
 ## Modules
 
-No
-modules.
+No modules.
 
 ## Resources
 
