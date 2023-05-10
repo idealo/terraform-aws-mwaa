@@ -185,12 +185,11 @@ No modules.
 
 ## Outputs
 
-| Name                                                                                                                          | Description                                                 |
-|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn)                                                                | The arn of the created MWAA environment.                    |
-| <a name="mwaa_execution_role_arn"></a> [mwaa\_execution\_role\_arn](#output\_mwaa\_execution\_role\_arn)                      | The IAM Role arn for MWAA Execution Role.                   |
-| <a name="mwaa_service_role_arn"></a> [mwaa\_service\_role\_arn](#output\_mwaa_service\_role\_arn)                             | The Service Role arn for MWAA environment.                  |
+| Name | Description |
+|------|-------------|
+| <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | The arn of the created MWAA environment. |
+| <a name="output_mwaa_execution_role_arn"></a> [mwaa\_execution\_role\_arn](#output\_mwaa\_execution\_role\_arn) | The IAM Role arn for MWAA Execution Role. |
 | <a name="output_mwaa_nat_gateway_public_ips"></a> [mwaa\_nat\_gateway\_public\_ips](#output\_mwaa\_nat\_gateway\_public\_ips) | List of the ips of the nat gateways created by this module. |
-| <a name="output_mwaa_webserver_url"></a> [mwaa\_webserver\_url](#output\_mwaa\_webserver\_url)                                | The webserver URL of the MWAA Environment.                  |
-
+| <a name="output_mwaa_service_role_arn"></a> [mwaa\_service\_role\_arn](#output\_mwaa\_service\_role\_arn) | The Service Role arn for MWAA environment. |
+| <a name="output_mwaa_webserver_url"></a> [mwaa\_webserver\_url](#output\_mwaa\_webserver\_url) | The webserver URL of the MWAA Environment. |
 <!-- END_TF_DOCS -->
