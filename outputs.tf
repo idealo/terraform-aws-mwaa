@@ -9,12 +9,12 @@ output "mwaa_arn" {
 }
 
 output "mwaa_execution_role_arn" {
-  value = aws_mwaa_environment.this.execution_role_arn
+  value       = aws_mwaa_environment.this.execution_role_arn
   description = "The IAM Role arn for MWAA Execution Role."
 }
 
 output "mwaa_service_role_arn" {
-  value = aws_mwaa_environment.this.execution_role_arn
+  value       = aws_mwaa_environment.this.execution_role_arn
   description = "The Service Role arn for MWAA environment."
 }
 

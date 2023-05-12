@@ -8,14 +8,14 @@ resource "aws_mwaa_environment" "this" {
   environment_class  = var.environment_class
   airflow_version    = var.airflow_version
 
-  source_bucket_arn                 = var.source_bucket_arn
-  dag_s3_path                       = var.dag_s3_path
-  plugins_s3_path                   = var.plugins_s3_path
-  plugins_s3_object_version         = var.plugins_s3_object_version
-  requirements_s3_path              = var.requirements_s3_path
-  requirements_s3_object_version    = var.requirements_s3_object_version
-  startup_script_s3_path            = var.startup_script_s3_path
-  startup_script_s3_object_version  = var.startup_script_s3_object_version
+  source_bucket_arn                = var.source_bucket_arn
+  dag_s3_path                      = var.dag_s3_path
+  plugins_s3_path                  = var.plugins_s3_path
+  plugins_s3_object_version        = var.plugins_s3_object_version
+  requirements_s3_path             = var.requirements_s3_path
+  requirements_s3_object_version   = var.requirements_s3_object_version
+  startup_script_s3_path           = var.startup_script_s3_path
+  startup_script_s3_object_version = var.startup_script_s3_object_version
 
   logging_configuration {
     dag_processing_logs {
