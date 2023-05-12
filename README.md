@@ -187,6 +187,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_mwaa_name"></a> [mwaa\_name](#output\_mwaa\_name) | The name of the created MWAA environment. |
 | <a name="output_mwaa_arn"></a> [mwaa\_arn](#output\_mwaa\_arn) | The arn of the created MWAA environment. |
 | <a name="output_mwaa_execution_role_arn"></a> [mwaa\_execution\_role\_arn](#output\_mwaa\_execution\_role\_arn) | The IAM Role arn for MWAA Execution Role. |
 | <a name="output_mwaa_nat_gateway_public_ips"></a> [mwaa\_nat\_gateway\_public\_ips](#output\_mwaa\_nat\_gateway\_public\_ips) | List of the ips of the nat gateways created by this module. |

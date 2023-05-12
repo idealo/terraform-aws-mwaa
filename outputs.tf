@@ -1,3 +1,8 @@
+output "mwaa_name" {
+  value       = aws_mwaa_environment.this.name
+  description = "The name of the created MWAA environment."
+}
+
 output "mwaa_arn" {
   value       = aws_mwaa_environment.this.arn
   description = "The arn of the created MWAA environment."
