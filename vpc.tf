@@ -21,9 +21,9 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_eip" "this" {
-  count = var.create_networking_config ? length(var.public_subnet_cidrs) : 0
-  vpc   = true
-  tags  = merge({
+  count  = var.create_networking_config ? length(var.public_subnet_cidrs) : 0
+  domain = "vpc"
+  tags   = merge({
     Name = "mwaa-${var.environment_name}-eip-${count.index}"
   }, var.tags)
 }
