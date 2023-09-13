@@ -1,9 +1,20 @@
+data "aws_availability_zones" "available" {
+  filter {
+    name = "group-name"
+    values = [var.region]
+  }
+}
+
+locals {
+  az_names = sort(data.aws_availability_zones.available.names)
+}
+
 resource "aws_subnet" "public" {
   count                   = var.create_networking_config ? length(var.public_subnet_cidrs) : 0
   cidr_block              = var.public_subnet_cidrs[count.index]
   vpc_id                  = var.vpc_id
   map_public_ip_on_launch = true
-  availability_zone       = count.index % 2 == 0 ? "${var.region}a" : "${var.region}b"
+  availability_zone       = count.index % 2 == 0 ? local.az_names[0] : local.az_names[1]
   tags                    = merge({
     Name = "mwaa-${var.environment_name}-public-subnet-${count.index}"
   }, var.tags)
@@ -14,7 +25,7 @@ resource "aws_subnet" "private" {
   cidr_block              = var.private_subnet_cidrs[count.index]
   vpc_id                  = var.vpc_id
   map_public_ip_on_launch = false
-  availability_zone       = count.index % 2 == 0 ? "${var.region}a" : "${var.region}b"
+  availability_zone       = count.index % 2 == 0 ? local.az_names[0] : local.az_names[1]
   tags                    = merge({
     Name = "mwaa-${var.environment_name}-private-subnet-${count.index}"
   }, var.tags)
