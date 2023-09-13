@@ -5,6 +5,10 @@ data "aws_availability_zones" "available" {
   }
 }
 
+locals {
+  az_names = sort(data.aws_availability_zones.available.names)
+}
+
 resource "aws_subnet" "public" {
   count                   = var.create_networking_config ? length(var.public_subnet_cidrs) : 0
   cidr_block              = var.public_subnet_cidrs[count.index]
