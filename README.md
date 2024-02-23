@@ -109,7 +109,7 @@ resource "aws_s3_bucket_public_access_block" "mwaa" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.37.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.38.0 |
 
 ## Modules
 
