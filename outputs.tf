@@ -22,3 +22,8 @@ output "mwaa_webserver_url" {
   value       = aws_mwaa_environment.this.webserver_url
   description = "The webserver URL of the MWAA Environment."
 }
+
+output "mwaa_security_group_id" {
+  value       = aws_security_group.this.id
+  description = "The security group id of the MWAA Environment."
+}
