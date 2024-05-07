@@ -98,12 +98,6 @@ resource "aws_security_group" "this" {
   tags   = merge({
     Name = "mwaa-${var.environment_name}-no-ingress-sg"
   }, var.tags  )
-  ingress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
-    self      = true
-  }
   egress {
     from_port   = 0
     to_port     = 0
@@ -112,4 +106,32 @@ resource "aws_security_group" "this" {
       "0.0.0.0/0"
     ]
   }
+}
+
+resource "aws_security_group_rule" "ingress_from_self" {
+  from_port         = 0
+  protocol          = "-1"
+  security_group_id = aws_security_group.this.id
+  to_port           = 0
+  type              = "ingress"
+  self = true
+}
+
+resource "aws_security_group_rule" "egress_all_ipv4" {
+  from_port         = 0
+  protocol          = "-1"
+  security_group_id = aws_security_group.this.id
+  to_port           = 0
+  type              = "egress"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "egress_all_ipv6" {
+  count             = var.enable_ipv6_in_security_group ? 1 : 0
+  from_port         = 0
+  protocol          = "-1"
+  security_group_id = aws_security_group.this.id
+  to_port           = 0
+  type              = "egress"
+  ipv6_cidr_blocks  = ["::/0"]
 }
