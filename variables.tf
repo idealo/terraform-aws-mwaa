@@ -98,6 +98,12 @@ variable "additional_associated_security_group_ids" {
   default     = []
 }
 
+variable "enable_ipv6_in_security_group" {
+  description = "Enable IPv6 in the security group"
+  type        = bool
+  default     = false
+}
+
 # iam
 variable "additional_execution_role_policy_document_json" {
   description = "Additional permissions to attach to the base mwaa execution role"
