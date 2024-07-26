@@ -2,7 +2,7 @@ plugin "terraform" {
   enabled = true
   preset  = "recommended"
   source  = "github.com/terraform-linters/tflint-ruleset-terraform"
-  version = "0.7.0"
+  version = "0.8.0"
 }
 
 plugin "aws" {
