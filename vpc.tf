@@ -1,6 +1,6 @@
 data "aws_availability_zones" "available" {
   filter {
-    name = "group-name"
+    name = "region-name"
     values = [var.region]
   }
 }
