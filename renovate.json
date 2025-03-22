@@ -8,6 +8,7 @@
     ":semanticCommits",
     ":labels(dependencies)",
     "group:allNonMajor",
+    "group:allDigest",
     "schedule:weekdays",
     "helpers:pinGitHubActionDigests"
   ],
