@@ -59,4 +59,5 @@ jobs:
           output-file: README.md
           output-method: inject
           git-push: "true"
+          git-push-sign-off: "true"
 
