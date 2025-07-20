@@ -9,8 +9,12 @@
     ":labels(dependencies)",
     "group:allNonMajor",
     "group:allDigest",
-    "schedule:weekdays",
     "helpers:pinGitHubActionDigests"
   ],
-  "forkProcessing": "enabled"
+  "forkProcessing": "enabled",
+  "terraform": {
+    "lockFileMaintenance": {
+      "enabled": false
+    }
+  }
 }
