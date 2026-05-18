@@ -20,7 +20,7 @@ variable "airflow_version" {
 variable "foo" {
   description = "bar"
   type        = string
-  default     = ""
+  default     = "baz"
 }
 
 # s3 configuration
