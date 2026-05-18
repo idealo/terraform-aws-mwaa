@@ -17,6 +17,12 @@ variable "airflow_version" {
   default     = "2.0.2"
 }
 
+variable "foo" {
+  description = "bar"
+  type        = string
+  default     = ""
+}
+
 # s3 configuration
 variable "source_bucket_arn" {
   type        = string
