@@ -156,6 +156,7 @@ No modules.
 | <a name="input_enable_ipv6_in_security_group"></a> [enable\_ipv6\_in\_security\_group](#input\_enable\_ipv6\_in\_security\_group) | Enable IPv6 in the security group | `bool` | `false` | no |
 | <a name="input_environment_class"></a> [environment\_class](#input\_environment\_class) | n/a | `string` | `"mw1.small"` | no |
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the MWAA environment | `string` | n/a | yes |
+| <a name="input_foo"></a> [foo](#input\_foo) | bar | `string` | `"baz"` | no |
 | <a name="input_internet_gateway_id"></a> [internet\_gateway\_id](#input\_internet\_gateway\_id) | ID of the internet gateway to the VPC, if not set and create\_networking\_config = true an internet gateway will be created | `string` | `null` | no |
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | KMS CMK ARN to use by MWAA for data encryption. MUST reference the same KMS key as used by S3 bucket specified by source\_bucket\_arn, if the bucket uses KMS. If not specified, the default AWS owned key for MWAA will be used for backward compatibility with version 1.0.1 of this module. | `string` | `null` | no |
 | <a name="input_max_workers"></a> [max\_workers](#input\_max\_workers) | numeric string, min 1 | `string` | `"10"` | no |
